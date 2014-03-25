@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.scaleframework</groupId>
-    <artifactId>scaleframework-core</artifactId>
+    <groupId>org.royrusso</groupId>
+    <artifactId>akka-spring</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <jdk.version>1.7</jdk.version>
         <scala.version>2.10.3</scala.version>
         <akka.version>2.3.0</akka.version>
-        <spring.version>4.0.2</spring.version>
+        <spring.version>4.0.2.RELEASE</spring.version>
     </properties>
 
 
@@ -82,7 +82,7 @@
     </dependencies>
 
     <build>
-        <finalName>scaleframework-core</finalName>
+        <finalName>akka-spring</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
