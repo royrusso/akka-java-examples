@@ -1,5 +1,6 @@
 package org.scaleframework.app;
-/*
+
+/**
  * (C) Copyright 2014 Roy Russo
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
