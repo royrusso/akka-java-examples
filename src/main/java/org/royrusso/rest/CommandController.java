@@ -18,7 +18,7 @@
  */
 
 
-package org.scaleframework.rest;
+package org.royrusso.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 public class CommandController {
 
     public static final Logger log = LoggerFactory.getLogger(CommandController.class);
-
 
 
 }

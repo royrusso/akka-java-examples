@@ -1,7 +1,4 @@
-package org.scaleframework.app;
-
 /**
- *
  * (C) Copyright 2014 Roy Russo
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,25 +13,30 @@ package org.scaleframework.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
+ *
+ *
  */
 
+
+package org.royrusso.actor;
+
+import akka.actor.DeadLetter;
 import akka.actor.UntypedActor;
-import akka.event.Logging;
-import akka.event.LoggingAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class GenericActor extends UntypedActor {
+/**
+ * @author royrusso
+ */
+public class DeadLetterActor extends UntypedActor {
 
-    LoggingAdapter log = Logging.getLogger(getContext().system(), this);
-
-    @Override
-    public void preStart() {
-        log.info("Starting");
-    }
+    public static final Logger log = LoggerFactory.getLogger(DeadLetterActor.class);
 
     @Override
-    public void onReceive(Object msg) {
-        log.info("Received Call: " + msg);
+    public void onReceive(Object message) {
+        if (message instanceof DeadLetter) {
+            log.debug("Received Dead Letter: " + message.toString());
+        }
     }
-
 
 }

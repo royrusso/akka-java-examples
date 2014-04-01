@@ -8,14 +8,17 @@
     <groupId>org.royrusso</groupId>
     <artifactId>akka-spring</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>parent-child</module>
+        <module>event-bus</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.0.2-RELEASE</spring.version>
         <jdk.version>1.7</jdk.version>
         <scala.version>2.10.3</scala.version>
-        <akka.version>2.3.0</akka.version>
+        <akka.version>2.3.1</akka.version>
         <spring.version>4.0.2.RELEASE</spring.version>
     </properties>
 
@@ -34,6 +37,11 @@
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-cluster_2.10</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-slf4j_2.10</artifactId>
             <version>${akka.version}</version>
         </dependency>
 
