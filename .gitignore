@@ -1,6 +1,9 @@
 *.class
-*.log
-*.snapshots
+
+# Akka Persistence
+/logs
+/journal
+/snapshots
 
 # Package Files #
 *.jar

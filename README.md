@@ -1,15 +1,44 @@
 Akka examples in Java
 ==============
 
+A few examples using Akka with Java. These examples have basic structures in common:
+
+* Coded in Java.
+* Clustered Akka setup.
+* Logback / SL4J Logger. Log file is under the root path: ``/logs``
+* Akka configuration has most logging options turned on. (chatty)
+
+All examples are runnable from within your IDE, by executing the ``Main`` method in the corresponding ``org.royrusso.app.System`` class.
+
+Simple Akka Example
+------------------
+
+The simplest of Akka examples. Creates an Actor that processes a command.
 
 Akka Parent-Child Actors
 ------------------
 
+This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
+This cluster that contains Parent Actors that, given a Command, send an Event to a Child Actor for processing.
+
+Akka Persistence with EventSourcing
+------------------
+
+Usage of the new Akka Persistence module with Event Sourcing. An Akka Processor is responsible for processing non-persistent Commands
+that generate Events. The Events are persisted, and then allowed to modify the state of the processor.
+
+During recovery, the system then loads the persisted Events and replays them to the processor.
+
+On restart, the system will load its last known state from the latest Snapshot (``snapshot`` dir), and replay all Journaled (``journal`` dir) Events after that point.
+
+Notes:
+
+* LevelDB is used for persistence in this example.
+* ``/snapshots`` contains the snapshot of the processor states.
+* ``/journal`` contains the running journal of events.
+
+
 Akka Event-Bus
 ------------------
 
-Akka Persistence
-------------------
-
-Simple Akka Example
-------------------
+TODO
