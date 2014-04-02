@@ -18,13 +18,13 @@ Simple Akka Example
 Akka Parent-Child Actors
 ------------------
 
-``parent-child`` :: This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
+``/parent-child`` :: This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
 This cluster that contains Parent Actors that, given a Command, send an Event to a Child Actor for processing.
 
 Akka Persistence with EventSourcing
 ------------------
 
-``eventsourcing-persistence`` :: Usage of the new Akka Persistence module with Event Sourcing. An Akka Processor is responsible for processing non-persistent Commands
+``/eventsourcing-persistence`` :: Usage of the new Akka Persistence module with Event Sourcing. An Akka Processor is responsible for processing non-persistent Commands
 that generate Events. The Events are persisted, and then allowed to modify the state of the processor.
 
 During recovery, the system then loads the persisted Events and replays them to the processor.
@@ -41,4 +41,4 @@ Notes:
 Akka Event-Bus
 ------------------
 
-TODO
+``/event-bus`` :: TODO
