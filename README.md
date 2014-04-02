@@ -13,18 +13,18 @@ All examples are runnable from within your IDE, by executing the ``Main`` method
 Simple Akka Example
 ------------------
 
-The simplest of Akka examples. Creates an Actor that processes a command.
+``/simple`` :: The simplest of Akka examples. Creates an Actor that processes a command.
 
 Akka Parent-Child Actors
 ------------------
 
-This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
+``parent-child`` :: This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
 This cluster that contains Parent Actors that, given a Command, send an Event to a Child Actor for processing.
 
 Akka Persistence with EventSourcing
 ------------------
 
-Usage of the new Akka Persistence module with Event Sourcing. An Akka Processor is responsible for processing non-persistent Commands
+``eventsourcing-persistence`` :: Usage of the new Akka Persistence module with Event Sourcing. An Akka Processor is responsible for processing non-persistent Commands
 that generate Events. The Events are persisted, and then allowed to modify the state of the processor.
 
 During recovery, the system then loads the persisted Events and replays them to the processor.
