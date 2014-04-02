@@ -19,7 +19,7 @@ Akka Parent-Child Actors
 ------------------
 
 ``/parent-child`` :: This example illustrates how you can configure an Akka cluster for hierarchical Actor relationships.
-This cluster that contains Parent Actors that, given a Command, send an Event to a Child Actor for processing.
+This cluster contains Parent Actors that, given a Command, send an Event to a Child Actor for processing.
 
 Akka Persistence with EventSourcing
 ------------------
