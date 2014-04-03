@@ -2,19 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>akka-java-examples</artifactId>
+        <groupId>org.royrusso</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.royrusso</groupId>
-    <artifactId>akka-java-examples</artifactId>
+    <artifactId>persistent-channel</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <modules>
-        <module>parent-child</module>
-        <module>event-bus</module>
-        <module>simple</module>
-        <module>eventsourcing-persistence</module>
-        <module>channel</module>
-    </modules>
     <packaging>pom</packaging>
 
     <properties>
@@ -24,7 +21,6 @@
         <akka.version>2.3.1</akka.version>
         <spring.version>4.0.2.RELEASE</spring.version>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -48,19 +44,10 @@
             <version>${akka.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -69,31 +56,10 @@
             <version>1.1.1</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!--
-                <dependency>
-                    <groupId>org.fusesource</groupId>
-                    <artifactId>sigar</artifactId>
-                    <version>1.6.4</version>
-                </dependency>
-        -->
-
     </dependencies>
 
     <build>
-        <finalName>akka-java-examples</finalName>
+        <finalName>akka-persistent-channel</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

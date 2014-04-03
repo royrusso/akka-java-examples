@@ -54,6 +54,7 @@ public class BaseProcessor extends UntypedEventsourcedProcessor {
         log.info("Received Recover: " + msg);
         if (msg instanceof Event) {
             processorState.update((Event) msg);
+
         } else if (msg instanceof SnapshotOffer) {
             processorState = (ProcessorState) ((SnapshotOffer) msg).snapshot();
         }
@@ -77,6 +78,9 @@ public class BaseProcessor extends UntypedEventsourcedProcessor {
                 public void apply(Event evt) throws Exception {
 
                     processorState.update(evt);
+
+                    // broadcast event on eventstream
+                    getContext().system().eventStream().publish(evt);
                 }
             });
         } else if (msg.equals("snapshot")) {

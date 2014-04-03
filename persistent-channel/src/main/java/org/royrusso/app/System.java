@@ -20,38 +20,35 @@ package org.royrusso.app;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import org.royrusso.event.Command;
-import org.royrusso.event.Event;
-import org.royrusso.event.EventHandler;
-import org.royrusso.persistence.BaseProcessor;
+import akka.persistence.Persistent;
+import org.royrusso.actor.BaseProcessor;
+import org.royrusso.actor.Receiver;
+import org.royrusso.command.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main runtime class.
+ */
 public class System {
-
 
     public static final Logger log = LoggerFactory.getLogger(System.class);
 
     public static void main(String... args) throws Exception {
 
-        final ActorSystem actorSystem = ActorSystem.create("actor-server");
+        final ActorSystem actorSystem = ActorSystem.create("channel-system");
 
-        final ActorRef handler = actorSystem.actorOf(Props.create(EventHandler.class));
-        actorSystem.eventStream().subscribe(handler, Event.class);
+        Thread.sleep(2000);
 
-        Thread.sleep(5000);
+        final ActorRef receiver = actorSystem.actorOf(Props.create(Receiver.class));
+        final ActorRef processor = actorSystem.actorOf(Props.create(BaseProcessor.class, receiver), "channel-processor");
 
-        final ActorRef actorRef = actorSystem.actorOf(Props.create(BaseProcessor.class), "eventsourcing-processor");
 
-        actorRef.tell(new Command("CMD 1"), null);
-        actorRef.tell(new Command("CMD 2"), null);
-        actorRef.tell(new Command("CMD 3"), null);
-        actorRef.tell("snapshot", null);
-        actorRef.tell(new Command("CMD 4"), null);
-        actorRef.tell(new Command("CMD 5"), null);
-        actorRef.tell("printstate", null);
+        for (int i = 0; i < 10; i++) {
+            processor.tell(Persistent.create(new Command("CMD " + i)), null);
+        }
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         log.debug("Actor System Shutdown Starting...");
 

@@ -20,36 +20,37 @@ package org.royrusso.app;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import org.royrusso.event.Command;
+import org.royrusso.actor.Emitter;
+import org.royrusso.actor.Handler;
+import org.royrusso.command.Command;
 import org.royrusso.event.Event;
-import org.royrusso.event.EventHandler;
-import org.royrusso.persistence.BaseProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main runtime class.
+ * <p/>
+ * Create the Emitter Actor that will handle the initial Commands. The Emitter will publish events, of type Event, on the Akka EventBus.
+ * We configure a Handler that will listen for instances of Event on the event stream.
+ */
 public class System {
-
 
     public static final Logger log = LoggerFactory.getLogger(System.class);
 
     public static void main(String... args) throws Exception {
 
-        final ActorSystem actorSystem = ActorSystem.create("actor-server");
-
-        final ActorRef handler = actorSystem.actorOf(Props.create(EventHandler.class));
-        actorSystem.eventStream().subscribe(handler, Event.class);
+        final ActorSystem actorSystem = ActorSystem.create("event-system");
 
         Thread.sleep(5000);
 
-        final ActorRef actorRef = actorSystem.actorOf(Props.create(BaseProcessor.class), "eventsourcing-processor");
+        final ActorRef emitter = actorSystem.actorOf(Props.create(Emitter.class));
+        final ActorRef handler = actorSystem.actorOf(Props.create(Handler.class));
+        actorSystem.eventStream().subscribe(handler, Event.class);
 
-        actorRef.tell(new Command("CMD 1"), null);
-        actorRef.tell(new Command("CMD 2"), null);
-        actorRef.tell(new Command("CMD 3"), null);
-        actorRef.tell("snapshot", null);
-        actorRef.tell(new Command("CMD 4"), null);
-        actorRef.tell(new Command("CMD 5"), null);
-        actorRef.tell("printstate", null);
+
+        for (int i = 0; i < 10; i++) {
+            emitter.tell(new Command("CMD " + i), null);
+        }
 
         Thread.sleep(5000);
 
