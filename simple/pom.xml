@@ -13,7 +13,7 @@
     <groupId>org.royrusso</groupId>
     <artifactId>akka-simple</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
