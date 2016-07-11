@@ -13,7 +13,7 @@
         <module>event-bus</module>
         <module>simple</module>
         <module>eventsourcing-persistence</module>
-        <module>channel</module>
+        <module>persistent-channel</module>
     </modules>
     <packaging>pom</packaging>
 
